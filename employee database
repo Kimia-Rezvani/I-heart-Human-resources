@@ -1,0 +1,122 @@
+#!/usr/bin/env python3
+#################################################
+Human Resources
+#################################################
+
+
+class Employee:
+
+    def __init__(self, employee_name, employee_num):
+
+        self.employee_name = employee_name
+        self.employee_num = employee_num
+
+
+    def set_employee_name(self):
+        self.employee_name
+
+    def get_employee_name(self):
+        return self.employee_name
+
+    def set_employee_num(self):
+        self.employee_num
+
+    def get_employee_num(self):
+        return self.employee_num
+
+class ProductionWorker(Employee):
+    def __init__(self,employee_name, employee_num, shift, hourly_rate):
+        Employee.__init__(self, employee_name, employee_num)
+        self.shift= shift
+        self.hourly_rate = hourly_rate
+
+    def set_shift(self, shift):
+        self.shift = shift
+
+    # The set method sets the hourly pay attribute
+    def set_hourly_rate(self, hourly_rate):
+        self.hourly_rate = hourly_rate, '.2f'
+
+    # The get method returns the shift attribute
+    def get_shift(self):
+        if self.shift == 1:
+            self.shift = 'Day shift'
+        elif self.shift == 2:
+            self.shift = 'Night shift'
+        else:
+            print('That is not a valid shift')
+        return self.shift
+
+    # The get method returns the hourly pay rate attribute
+    def get_hourly_rate(self):
+        return self.hourly_rate
+
+    def __str__(self):
+        result = "Name: " + self.get_employee_name() + "\n" + \
+                 "ID number: " + str(self.get_employee_num()) + \
+                 "\nShift: " + self.get_shift() + \
+                 "Hourly pay: " + str(self.get_hourly_rate())
+        return result
+
+
+
+
+
+
+
+def main():
+    # manage the flow
+
+
+
+    
+
+
+
+    #Calls the function to make worker list
+    workers = makeWorkerList()
+
+    # Output
+    print('Here are all the workers hired today:')
+    display_worker(workers)
+
+    # Function to take user input, store in the object, then store in a list
+def makeWorkerList():
+
+        # Creates an empty list to store employee data
+        worker_list = []
+
+        # Input to get the number of worker's data the user will be entering in
+        numOfWorkers = int(input('How many workers hired today? '))
+
+        # Loop to iterate through each worker
+        for num in range(numOfWorkers):
+            print('Enter the data for worker', int(num + 1))
+
+            # Input
+            employee_name = input('Enter the name of the worker: ')
+            employee_num = int(input('Enter the id number: '))
+            shift = int(input('Enter the shift number (1 or 2): '))
+            hourly_rate = float(input('Enter the hourly pay: '))
+            print()
+
+            # Creates the Production worker object to store the attributes in
+            worker = ProductionWorker(employee_name, employee_num, shift, hourly_rate)
+
+            # append the data into a list
+            worker_list.append(worker)
+
+        return worker_list
+
+    # function to display the information
+def display_worker(worker_list):
+        for worker in worker_list:
+            print('Name:', worker.get_employee_name())
+            print('ID number:', worker.get_employee_num())
+            print('Shift:', worker.get_shift())
+            print('Hourly rate: $', worker.get_hourly_rate(), sep='')
+            print()
+
+
+if __name__ == "__main__":
+    main()
